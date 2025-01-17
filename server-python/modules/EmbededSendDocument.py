@@ -19,19 +19,6 @@ def EmbeddedSendDocument():
 
         file_dir = os.path.dirname(os.path.realpath('__file__'))
         file_name = os.path.join(file_dir, 'modules/Affidavit-of-Residence.pdf')
-    
-        form_fields = [
-            boldsign.FormField(
-                fieldType="Signature",
-                pageNumber=1,
-                bounds=boldsign.Rectangle(
-                    x=50,
-                    y=50,
-                    width=200,
-                    height=30
-                )
-            )
-        ] 
         
         document_signer = boldsign.DocumentSigner(
             name=request.form["Name"],
@@ -47,9 +34,8 @@ def EmbeddedSendDocument():
             signers=[document_signer],
             sendViewOption='PreparePage',
             showToolbar=True,
-            files=[file_name],  
-            expiryDays=60,
-            form_fields=form_fields      
+            files=[file_name],
+            expiryDays=60  
         )
         
         embedded_request_url_document_response = document_api.create_embedded_request_url_document(

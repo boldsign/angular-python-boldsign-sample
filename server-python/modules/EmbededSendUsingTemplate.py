@@ -15,32 +15,17 @@ def EmbeddedSendUsingTemplate():
     
         template_api = boldsign.TemplateApi(api_client)
         data = json.loads(request.data)
-        form_fields = [
-            boldsign.FormField(
-                fieldType="Signature",
-                page_number=1,
-                bounds=boldsign.Rectangle(
-                    x=50,
-                    y=100,
-                    width=100,
-                    height=60
-                )
-            )
-        ]
 
         role = boldsign.Role(
             roleIndex=2,
             role = "Manager",
-            signerRole="signer",
             signerName= data['name'],
             signerEmail= data['email'],
-            formFields=form_fields
         )
         
         embedded_send_template_form_requests = boldsign.EmbeddedSendTemplateFormRequest(
             title="API template",
             message= "This Template Document from API",
-            allowMessageEditing=True,    
             roles=[role],        
             showToolbar=True,
             sendViewOption= "PreparePage",

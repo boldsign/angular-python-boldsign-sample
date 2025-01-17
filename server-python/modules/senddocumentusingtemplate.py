@@ -16,17 +16,17 @@ def sendDocumentUsingTemplate():
         template_api = boldsign.TemplateApi(api_client)
 
         form_fields = [
-        boldsign.FormField(
-            fieldType="Signature",
-            pageNumber=1,
-            bounds=boldsign.Rectangle(
-                x=100,
-                y=100,
-                width=100,
-                height=50
-            )
-        ),
-    ]
+            boldsign.FormField(
+                fieldType="Signature",
+                pageNumber=1,
+                bounds=boldsign.Rectangle(
+                    x=100,
+                    y=100,
+                    width=100,
+                    height=50
+                )
+            ),
+        ]
 
         role = boldsign.Role(
             role_index=50,

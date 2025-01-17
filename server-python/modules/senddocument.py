@@ -19,7 +19,9 @@ def sendDocument():
 
         form_fields = [
             boldsign.FormField(
+                isRequired= True,
                 fieldType="Signature",
+                name = "Sign",
                 pageNumber=1,
                 bounds=boldsign.Rectangle(
                     x=50,
@@ -27,38 +29,23 @@ def sendDocument():
                     width=200,
                     height=25
                 )
-            ),
-            boldsign.FormField(
-                fieldType="Label",
-                value="Label Field",
-                pageNumber=1,
-                bounds=boldsign.Rectangle(
-                    x=150,
-                    y=250,
-                    width=200,
-                    height=25
-                )
-            ),
+            )
         ]
 
         document_signer = boldsign.DocumentSigner(
             name=request.form["Name"],
             emailAddress=request.form["Email"],
             signerOrder=1,
-            signerType="Signer",
             formFields=form_fields,
-            locale="EN"
+
         )
 
         send_for_sign = boldsign.SendForSign(
-            document_title = "SDK Document Test case",
             files=[file_name],
             message='Please sign this.',
             signers=[document_signer],
             title="Document SDK API test",
-            expiryDateType='Days',
             expiryDate=60,
-
         )
 
         send_document_response = document_api.send_document(send_for_sign)
