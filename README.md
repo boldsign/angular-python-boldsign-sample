@@ -35,6 +35,7 @@ This repository includes the below list of code examples using the BoldSign APIs
 
 ### Python
 1. Open a new terminal and install the packages by using `pip install python-dotenv`.
+2. Install the boldsign package by using `pip install boldsign`.
 2. Run `py run.py`. Server is listening the port.
 
 ## Useful Resources
