@@ -1,16 +1,21 @@
 import json
 from app import app
-from flask import request
+from flask import jsonify, request
 import requests
 from os import environ
+import boldsign
 
 
 @app.route('/api/getDocumentProperties', methods=['GET'])
 def DocumentProperties():
-    url = environ.get('BASE_URL') + "v1/document/properties?documentId=" + \
-        request.args.get('documentId')
-    payload = {}
-    headers = {'X-API-KEY': environ.get('API_KEY')}
-    response = requests.request("GET", url, headers=headers, data=payload)
+    configuration = boldsign.Configuration(
+    api_key = environ.get('API_KEY')
+)
 
-    return json.loads(response.text)
+    with boldsign.ApiClient(configuration) as api_client:
+
+        document_api = boldsign.DocumentApi(api_client)
+
+        get_properties_response = document_api.get_properties(document_id=request.args.get('documentId'))
+
+        return jsonify(get_properties_response.to_dict())
