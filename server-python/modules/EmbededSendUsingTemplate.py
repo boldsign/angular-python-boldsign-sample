@@ -17,7 +17,7 @@ def EmbeddedSendUsingTemplate():
         data = json.loads(request.data)
 
         role = boldsign.Role(
-            roleIndex=2,
+            roleIndex=1,
             role = "Manager",
             signerName= data['name'],
             signerEmail= data['email'],
