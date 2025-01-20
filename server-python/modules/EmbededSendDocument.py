@@ -23,7 +23,6 @@ def EmbeddedSendDocument():
         document_signer = boldsign.DocumentSigner(
             name=request.form["Name"],
             emailAddress=request.form["Email"],
-            signerOrder=1,
             signerType="Signer",
         )
         
