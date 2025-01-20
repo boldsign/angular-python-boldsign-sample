@@ -16,7 +16,7 @@ def sendDocumentUsingTemplate():
         template_api = boldsign.TemplateApi(api_client)
 
         role = boldsign.Role(
-            role_index=50,
+            role_index=1,
             signer_name= request.json['name'],
             signer_email= request.json['email'],
             role = "Manager"
